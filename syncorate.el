@@ -87,7 +87,6 @@
           (syncorate-show-mode-line)
         (when (string-equal syncorate-state "standby")
           (message "Break!")
-          (setq syncorate-timer nil)
           (syncorate-clear-mode-line))))))
 
 (defun syncorate-focus (duration activity)
