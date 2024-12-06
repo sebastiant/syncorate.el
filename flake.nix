@@ -4,7 +4,7 @@
   outputs = { self }: {
     overlays.emacs = final: prev:
       let
-        syncorate-el = final.emacsPackages.trivialBuild rec {
+        syncorate-el = final.emacsPackages.trivialBuild {
           pname = "syncorate.el";
           version = "1.0.0";
 
@@ -12,7 +12,7 @@
 
           buildInputs = [ final.emacs ];
 
-          meta = with final.lib; {
+          meta = {
             homepage = "https://github.com/sebastiant/syncorate.el";
             description = "Emacs interface for Syncorate";
             longDescription = ''
@@ -24,7 +24,7 @@
         overrides = efinal: eprev: { inherit syncorate-el; };
       in {
         emacsPackagesFor = emacs:
-          (prev.emacsPackagesFor emacs).overrideScope' overrides;
+          (prev.emacsPackagesFor emacs).overrideScope overrides;
       };
   };
 }
